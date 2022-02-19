@@ -35,7 +35,6 @@ def send_to_controller(breachType):
   header = 0xfeed
   print(f'{header}, {breachType}')
 
-
 def send_to_email(breachType):
   recepient = "a.b@c.com"
   if breachType == 'TOO_LOW':
