@@ -10,7 +10,7 @@ class TypewiseTest(unittest.TestCase):
         self.assertTrue(typewise_alert.Generate_email_content('TOO_HIGH', typewise_alert.email_info['messages']) == 'Hi, the temperature is too high')
     def test_send_to_email_for_TOO_LOW(self):
         self.assertTrue(typewise_alert.send_to_email('TOO_LOW')== 'To: a.b@c.com : Hi, the temperature is too low')
-    def test_send_to_email_for_TOO_LOW(self):
+    def test_send_to_email_for_TOO_HIGH(self):
         self.assertTrue(typewise_alert.send_to_email('TOO_HIGH')== 'To: a.b@c.com : Hi, the temperature is too high')
     def test_DefineCoolingtype_limits_for_PASSIVE_COOLING(self):
         self.assertTrue(typewise_alert.DefineCoolingtype_limits('PASSIVE_COOLING') == {"lowerLimit" : 0, "upperLimit" : 35})
@@ -26,7 +26,7 @@ class TypewiseTest(unittest.TestCase):
         self.assertTrue(typewise_alert.classify_temperature_breach('HI_ACTIVE_COOLING', 50)=='TOO_HIGH')
     def test_classify_temperature_breach_for_TOO_LOW(self):
         self.assertTrue(typewise_alert.classify_temperature_breach('PASSIVE_COOLING', 30)=='TOO_LOW')
-    def test_classify_temperature_breach_for_TOO_LOW(self):
+    def test_classify_temperature_breach_for_WRONG_PARAM(self):
         self.assertTrue(typewise_alert.classify_temperature_breach('WRONG_COOLING', 30)=='Invalid cooling type')
     def test_check_and_alert_for_NORMAL(self):
         self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_controller, 'PASSIVE_COOLING', 30) == "NORMAL")
