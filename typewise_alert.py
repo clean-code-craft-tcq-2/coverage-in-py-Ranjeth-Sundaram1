@@ -28,15 +28,16 @@ def classify_temperature_breach(coolingType, temperatureInC):
     else: 
         return "Invalid cooling type"
 
+def IsbatteryCharValid(batteryChar):
+    batteryChar_types = ['PASSIVE_COOLING', 'HI_ACTIVE_COOLING', 'MED_ACTIVE_COOLING']
+    if batteryChar in batteryChar_types:
+        return True
+    return False
 
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
-  breachType =\
-    classify_temperature_breach(batteryChar['coolingType'], temperatureInC)
-  if alertTarget == 'TO_CONTROLLER':
-    send_to_controller(breachType)
-  elif alertTarget == 'TO_EMAIL':
-    send_to_email(breachType)
-
+    breachType =  classify_temperature_breach(batteryChar, temperatureInC) if IsbatteryCharValid(batteryChar) else False
+    alert_status = alertTarget(breachType) if breachType else False
+    return((alert_status, breachType))
 
 def send_to_controller(breachType):
   header = 0xfeed
