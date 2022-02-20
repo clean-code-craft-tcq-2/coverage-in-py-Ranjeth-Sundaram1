@@ -36,11 +36,12 @@ def IsbatteryCharValid(batteryChar):
   
 def GetBreachType(batteryChar, temperatureInC):
     breachType =  classify_temperature_breach(batteryChar, temperatureInC) if IsbatteryCharValid(batteryChar) else False
-    return breachType if breachType!=False else 'Invalid Param'
+    return breachType if breachType!=False else 'Invalid_Param'
 
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
     breachType = GetBreachType(batteryChar, temperatureInC)
-    alert_status = alertTarget(breachType) if breachType!='Invalid Param' else False
+    alert_status = alertTarget(breachType) if breachType!='Invalid_Param' else False
+    print (alert_status, breachType)
     return((alert_status, breachType))
 
 def send_to_controller(breachType):
