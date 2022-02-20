@@ -8,6 +8,10 @@ class TypewiseTest(unittest.TestCase):
         self.assertTrue(typewise_alert.Generate_email_content('TOO_LOW', typewise_alert.email_info['messages']) == 'Hi, the temperature is too low')
     def test_Generate_email_content_for_high(self):
         self.assertTrue(typewise_alert.Generate_email_content('TOO_HIGH', typewise_alert.email_info['messages']) == 'Hi, the temperature is too high')
+    def test_send_to_email_for_TOO_LOW(self):
+        self.assertTrue(typewise_alert.send_to_email('TOO_LOW')== 'To: a.b@c.com : Hi, the temperature is too low')
+    def test_send_to_email_for_TOO_LOW(self):
+        self.assertTrue(typewise_alert.send_to_email('TOO_HIGH')== 'To: a.b@c.com : Hi, the temperature is too high')
     def test_DefineCoolingtype_limits_for_PASSIVE_COOLING(self):
         self.assertTrue(typewise_alert.DefineCoolingtype_limits('PASSIVE_COOLING') == {"lowerLimit" : 0, "upperLimit" : 35})
     def test_DefineCoolingtype_limits_for_HI_ACTIVE_COOLING(self):
