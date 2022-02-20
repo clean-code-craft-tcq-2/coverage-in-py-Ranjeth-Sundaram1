@@ -47,6 +47,6 @@ def Generate_email_content(breachtype, email_messages):
 
 def send_to_email(breachType):
     mail_content = Generate_email_content(breachType, email_info['messages'])
-    sent_email = f"To: {email_info['recepient']} :{mail_content}"
+    sent_email = f"To: {email_info['recepient']} : {mail_content}"
     print(sent_email)
     return(sent_email)
