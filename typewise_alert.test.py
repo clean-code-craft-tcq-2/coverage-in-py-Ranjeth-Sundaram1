@@ -29,13 +29,13 @@ class TypewiseTest(unittest.TestCase):
     def test_classify_temperature_breach_for_TOO_LOW(self):
         self.assertTrue(typewise_alert.classify_temperature_breach('WRONG_COOLING', 30)=='Invalid cooling type')
     def test_check_and_alert_for_NORMAL(self):
-        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_controller, 'PASSIVE_COOLING', 30) == (True, "NORMAL"))
+        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_controller, 'PASSIVE_COOLING', 30) == "NORMAL")
     def test_check_and_alert_for_TOO_LOW(self):
-        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_email, 'PASSIVE_COOLING', -30) == (True, "TOO_LOW"))
+        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_email, 'PASSIVE_COOLING', -30) == "TOO_LOW")
     def test_check_and_alert_for_TOO_HIGH(self):
-        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_controller, 'PASSIVE_COOLING', 50) == (True, "TOO_HIGH"))
+        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_controller, 'PASSIVE_COOLING', 50) == "TOO_HIGH")
     def test_check_and_alert_for_Invalid_param(self):
-        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_controller, 'WRONG_COOLING', -30) == (False, "Invalid_Param"))
+        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_controller, 'WRONG_COOLING', -30) == "Invalid_Param")
         
 if __name__ == '__main__':
   unittest.main()
