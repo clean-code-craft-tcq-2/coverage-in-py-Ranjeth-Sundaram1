@@ -1,3 +1,8 @@
+email_info = { 'recepient' : 'a.b@c.com',
+               'messages'  : {'TOO_LOW' : 'Hi, the temperature is too low',
+                              'TOO_HIGH' : 'Hi, the temperature is too high'
+                            }
+                }
 
 def infer_breach(value, lowerLimit, upperLimit):
   if value < lowerLimit:
