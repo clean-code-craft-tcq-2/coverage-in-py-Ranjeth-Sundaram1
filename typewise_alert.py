@@ -35,7 +35,7 @@ def IsbatteryCharValid(batteryChar):
     return False
 
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
-    breachType =  classify_temperature_breach(batteryChar, temperatureInC) if IsbatteryCharValid(batteryChar) else False
+    breachType =  classify_temperature_breach(batteryChar, temperatureInC) if IsbatteryCharValid(batteryChar) else "Invalid Param"
     alert_status = alertTarget(breachType) if breachType else False
     return((alert_status, breachType))
 
