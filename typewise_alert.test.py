@@ -29,11 +29,11 @@ class TypewiseTest(unittest.TestCase):
     def test_classify_temperature_breach_for_TOO_LOW(self):
         self.assertTrue(typewise_alert.classify_temperature_breach('WRONG_COOLING', 30)=='Invalid cooling type')
     def test_check_and_alert_for_NORMAL(self):
-        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_controller(), 'PASSIVE_COOLING', 30) == (True, "NORMAL"))
+        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_controller, 'PASSIVE_COOLING', 30) == (True, "NORMAL"))
     def test_check_and_alert_for_TOO_LOW(self):
-        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_email(), 'PASSIVE_COOLING', -30) == (True, "TOO_LOW"))
+        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_email, 'PASSIVE_COOLING', -30) == (True, "TOO_LOW"))
     def test_check_and_alert_for_TOO_HIGH(self):
-        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_controller(), 'PASSIVE_COOLING', -30) == (True, "TOO_HIGH"))
+        self.assertTrue(typewise_alert.check_and_alert(typewise_alert.send_to_controller, 'PASSIVE_COOLING', -30) == (True, "TOO_HIGH"))
         
 if __name__ == '__main__':
   unittest.main()
