@@ -30,7 +30,6 @@ def classify_temperature_breach(coolingType, temperatureInC):
 
 def IsbatteryCharValid(batteryChar):
     batteryChar_types = ['PASSIVE_COOLING', 'HI_ACTIVE_COOLING', 'MED_ACTIVE_COOLING']
-    print(batteryChar)
     if batteryChar in batteryChar_types:
         return True
     return False
@@ -42,14 +41,13 @@ def GetBreachType(batteryChar, temperatureInC):
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
     breachType = GetBreachType(batteryChar, temperatureInC)
     alert_status = alertTarget(breachType) if breachType!='Invalid_Param' else False
-    print (alert_status, breachType)
-    return((alert_status, breachType))
+    return(breachType)
 
 def send_to_controller(breachType):
     header = 0xfeed
     command_to_controller = (f'{header}, {breachType}')
     print(command_to_controller)
-    return(True)
+    return(command_to_controller)
 
 def Generate_email_content(breachtype, email_messages):
     return email_messages[breachtype]
@@ -58,4 +56,4 @@ def send_to_email(breachType):
     mail_content = Generate_email_content(breachType, email_info['messages'])
     sent_email = f"To: {email_info['recepient']} : {mail_content}"
     print(sent_email)
-    return(True)
+    return(sent_email)
