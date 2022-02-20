@@ -35,11 +35,11 @@ def send_to_controller(breachType):
   header = 0xfeed
   print(f'{header}, {breachType}')
 
+def Generate_email_content(breachtype, email_messages):
+    return email_messages[breachtype]
+
 def send_to_email(breachType):
-  recepient = "a.b@c.com"
-  if breachType == 'TOO_LOW':
-    print(f'To: {recepient}')
-    print('Hi, the temperature is too low')
-  elif breachType == 'TOO_HIGH':
-    print(f'To: {recepient}')
-    print('Hi, the temperature is too high')
+    mail_content = Generate_email_content(breachType, email_info['messages'])
+    sent_email = f"To: {email_info['recepient']} :{mail_content}"
+    print(sent_email)
+    return(sent_email)
