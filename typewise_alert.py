@@ -46,14 +46,18 @@ def check_and_alert(alertTarget, batteryChar, temperatureInC):
 def send_to_controller(breachType):
     header = 0xfeed
     command_to_controller = (f'{header}, {breachType}')
-    print(command_to_controller)
+    PrintMessageONConsole(command_to_controller)
     return(command_to_controller)
 
 def Generate_email_content(breachtype, email_messages):
     return email_messages[breachtype]
 
+def PrintMessageONConsole(message):
+    print(message)
+    return True
+
 def send_to_email(breachType):
     mail_content = Generate_email_content(breachType, email_info['messages'])
     sent_email = f"To: {email_info['recepient']} : {mail_content}"
-    print(sent_email)
+    PrintMessageONConsole(sent_email)
     return(sent_email)
